@@ -51,11 +51,17 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-control-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[0.68rem] text-control-textSubtle">
+          <a
+            href={socialLinks.portfolioUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-cyanflux hover:underline"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-secgreen animate-pulse" />
+            <span>Deployed Live: portfolio-website-okni.onrender.com</span>
+          </a>
           <span>
-            Zero telemetry tracking · Localhost loopback principles · Production verified
-          </span>
-          <span>
-            © {year} Tushar Chaugule. All systems operational.
+            Zero telemetry tracking · Localhost loopback principles · © {year} Tushar Chaugule
           </span>
         </div>
       </div>

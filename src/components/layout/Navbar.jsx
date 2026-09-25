@@ -142,8 +142,8 @@ export default function Navbar() {
 
             {/* Resume button */}
             <a
-              href="/Tushar_Chaugule_Resume.pdf"
-              download
+              href={isCybersecurity ? socialLinks.resumeCs : socialLinks.resumeSde}
+              download={isCybersecurity ? "Tushar_Chaugule_Cybersecurity_Resume.pdf" : "Tushar_Chaugule_Software_Engineering_Resume.pdf"}
               className="flex h-8 items-center gap-1.5 rounded-lg border border-cyanflux/40 bg-cyanflux/10 px-3 font-mono text-xs font-medium text-cyanflux hover:bg-cyanflux/20 transition"
             >
               <Download className="h-3 w-3" />
@@ -239,8 +239,8 @@ export default function Navbar() {
                 GitHub
               </a>
               <a
-                href="/Tushar_Chaugule_Resume.pdf"
-                download
+                href={isCybersecurity ? socialLinks.resumeCs : socialLinks.resumeSde}
+                download={isCybersecurity ? "Tushar_Chaugule_Cybersecurity_Resume.pdf" : "Tushar_Chaugule_Software_Engineering_Resume.pdf"}
                 className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-cyanflux/40 bg-cyanflux/10 py-2 text-xs font-mono text-cyanflux"
               >
                 <Download className="h-3.5 w-3.5" />

@@ -137,6 +137,16 @@ export default function CommandPalette({ isOpen, onClose }) {
       keywords: "resume cv download pdf",
     },
     {
+      id: "ext-live-portfolio",
+      title: "Open Live Deployed Site (Render)",
+      category: "Live Deployment",
+      icon: ExternalLink,
+      action: () => {
+        window.open("https://portfolio-website-okni.onrender.com", "_blank");
+      },
+      keywords: "live deploy render portfolio website url okni",
+    },
+    {
       id: "ext-github",
       title: "Open GitHub Profile (@Tushar8767)",
       category: "External",

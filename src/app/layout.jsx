@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://tusharchaugule.dev"),
+  metadataBase: new URL("https://portfolio-website-okni.onrender.com"),
   title: "Tushar Chaugule | Engineering Control Room",
   description:
     "Personal engineering control room & systems showcase: Software Engineering × Cybersecurity × AI × Embedded/IoT. Verified architectures, testing evidence, and deterministic systems design.",

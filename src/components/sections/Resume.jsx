@@ -2,6 +2,7 @@
 
 import { Download, FileText, Shield, Code2, CheckCircle2 } from "lucide-react";
 import { useMode } from "@/context/ModeContext";
+import { socialLinks } from "@/data/navigation";
 
 export default function Resume() {
   const { mode } = useMode();
@@ -20,25 +21,25 @@ export default function Resume() {
                 DOWNLOAD RESUME
               </h2>
               <p className="font-sans text-sm text-control-textMuted leading-relaxed max-w-xl mb-6">
-                Curriculum Vitae documenting Computer Engineering degree (CGPA 8.85 / 10), cybersecurity internship experience, four major software and security research systems, and verified IIT NPTEL certifications.
+                Tailored ATS-optimized resumes documenting Computer Engineering degree (CGPA 8.85 / 10), cybersecurity internship experience, four major software & security systems, and verified IIT NPTEL certifications.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3 font-mono text-xs text-control-textSubtle mb-6">
                 <div className="flex items-center gap-2 border border-control-border bg-control-bg p-2.5 rounded-lg">
                   <Shield className="h-4 w-4 text-secgreen" />
-                  <span>Cybersecurity & SOC Core</span>
+                  <span>Cybersecurity Focus (CS)</span>
                 </div>
                 <div className="flex items-center gap-2 border border-control-border bg-control-bg p-2.5 rounded-lg">
                   <Code2 className="h-4 w-4 text-cyanflux" />
-                  <span>Software Systems & APIs</span>
+                  <span>Software Systems Focus (SDE)</span>
                 </div>
               </div>
 
-              {/* Action Buttons as requested */}
+              {/* Action Buttons with exact tailored files */}
               <div className="flex flex-wrap gap-3 font-mono text-xs">
                 <a
-                  href="/Tushar_Chaugule_Resume.pdf"
-                  download="Tushar_Chaugule_Software_Engineering_Resume.pdf"
+                  href={socialLinks.resumeSde}
+                  download="Tushar_Chaugule_SDE_Resume.pdf"
                   className="inline-flex h-11 items-center gap-2 rounded-lg border border-cyanflux/40 bg-cyanflux/10 px-5 font-semibold text-cyanflux hover:bg-cyanflux/20 transition shadow-glow"
                 >
                   <Download className="h-4 w-4" />
@@ -46,7 +47,7 @@ export default function Resume() {
                 </a>
 
                 <a
-                  href="/Tushar_Chaugule_Resume.pdf"
+                  href={socialLinks.resumeCs}
                   download="Tushar_Chaugule_Cybersecurity_Resume.pdf"
                   className="inline-flex h-11 items-center gap-2 rounded-lg border border-secgreen/40 bg-secgreen/10 px-5 font-semibold text-secgreen hover:bg-secgreen/20 transition shadow-glow-green"
                 >
@@ -57,26 +58,38 @@ export default function Resume() {
             </div>
 
             {/* Document Preview Card */}
-            <div className="rounded-xl border border-control-border bg-control-bg p-6 flex flex-col items-center text-center space-y-3">
+            <div className="rounded-xl border border-control-border bg-control-bg p-6 flex flex-col items-center text-center space-y-4">
               <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-control-borderHighlight bg-control-surface text-cyanflux">
                 <FileText className="h-8 w-8" />
               </div>
               <div className="space-y-1">
                 <p className="font-mono text-xs font-semibold text-control-text">
-                  Tushar_Chaugule_Resume.pdf
+                  Tushar Chaugule — Verified Resumes
                 </p>
                 <p className="font-mono text-[0.68rem] text-control-textSubtle">
-                  Verified Engineering & Security Document
+                  Available in Software Engineering (SDE) & Cybersecurity (CS) tracks
                 </p>
               </div>
-              <a
-                href="/Tushar_Chaugule_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs text-cyanflux hover:underline pt-2"
-              >
-                Preview in new tab →
-              </a>
+
+              <div className="flex gap-4 font-mono text-xs text-cyanflux">
+                <a
+                  href={socialLinks.resumeSde}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  Preview SDE PDF →
+                </a>
+                <span className="text-control-border">•</span>
+                <a
+                  href={socialLinks.resumeCs}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline text-secgreen"
+                >
+                  Preview CS PDF →
+                </a>
+              </div>
             </div>
           </div>
         </div>

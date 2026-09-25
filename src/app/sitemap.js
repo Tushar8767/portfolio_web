@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://tusharchaugule.dev";
+  const baseUrl = "https://portfolio-website-okni.onrender.com";
   const now = new Date();
 
   return [

@@ -5,6 +5,8 @@ Software Engineering × Cybersecurity × AI × Embedded/IoT
 
 A production-ready personal engineering lab, project showcase, and technical case-study system built to demonstrate systems thinking through verified architecture visualization, empirical evidence, technical decisions, and clean system design.
 
+🔗 **Live Deployment:** [https://portfolio-website-okni.onrender.com](https://portfolio-website-okni.onrender.com)
+
 ---
 
 ## Flagship Systems Showcased

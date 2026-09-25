@@ -51,8 +51,8 @@ export default function Hero({ onFilterSelect, activeFilter }) {
               </a>
 
               <a
-                href="/Tushar_Chaugule_Resume.pdf"
-                download
+                href={mode === "cybersecurity" ? socialLinks.resumeCs : socialLinks.resumeSde}
+                download={mode === "cybersecurity" ? "Tushar_Chaugule_Cybersecurity_Resume.pdf" : "Tushar_Chaugule_Software_Engineering_Resume.pdf"}
                 className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-control-border bg-control-surface px-4 font-mono text-xs font-semibold text-control-text hover:border-control-borderHighlight hover:bg-control-surfaceHover transition"
               >
                 <FileText className="h-3.5 w-3.5 text-control-textMuted" />
