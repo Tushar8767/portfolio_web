@@ -128,6 +128,78 @@ export const evidenceMap = [
     ],
   },
   {
+    technology: "Threat Detection & SOC",
+    category: "Security",
+    projects: [
+      {
+        id: "virtual-iot",
+        name: "Virtual IoT Security Laboratory",
+        role: "6 deterministic threat detection algorithms with SOAR automated quarantine and 7 MITRE attack scenarios",
+        fileEvidence: "backend/app/services/detection_engine.py, backend/app/services/attack_simulation.py",
+      },
+      {
+        id: "rakshak",
+        name: "Rakshak",
+        role: "Real-time process anomaly observation, memory drift tracking, and network socket inspection",
+        fileEvidence: "src/rakshak/core/observer.py",
+      },
+    ],
+  },
+  {
+    technology: "Capability Authorization & RBAC",
+    category: "Security / Systems",
+    projects: [
+      {
+        id: "rakshak",
+        name: "Rakshak",
+        role: "Strict inventory of 35 registered capabilities (26 read-only, 9 mutating) with two-step cryptographic tokens",
+        fileEvidence: "src/rakshak/core/capabilities.py, src/rakshak/core/authority.py",
+      },
+      {
+        id: "ks-sentinel",
+        name: "KS Sentinel 2.0",
+        role: "Capability broker routing client requests to pre-registered local operations with zero shell access",
+        fileEvidence: "agent/src/capability_broker.js",
+      },
+    ],
+  },
+  {
+    technology: "VAPT & Security Tools",
+    category: "Cybersecurity",
+    projects: [
+      {
+        id: "virtual-iot",
+        name: "Virtual IoT Security Laboratory",
+        role: "Vulnerability analysis, protocol fuzzing, HMAC authentication testing, and network sniffing simulations",
+        fileEvidence: "tests/test_attack_scenarios.py, scripts/network_audit.py",
+      },
+      {
+        id: "rakshak",
+        name: "Rakshak",
+        role: "Host attack surface reduction, loopback binding verification, and automated security test suite",
+        fileEvidence: "tests/test_spine.py, tests/test_security.py",
+      },
+    ],
+  },
+  {
+    technology: "WebSocket & Real-Time Telemetry",
+    category: "Software / Systems",
+    projects: [
+      {
+        id: "virtual-iot",
+        name: "Virtual IoT Security Laboratory",
+        role: "Bi-directional WebSocket streaming live sensor readings, attack alerts, and SOAR actions to React frontend",
+        fileEvidence: "backend/app/routes/ws.py, frontend/src/hooks/useWebSocket.ts",
+      },
+      {
+        id: "ks-sentinel",
+        name: "KS Sentinel 2.0",
+        role: "Low-latency WebSocket channel between Web OS desktop, gateway, and local agent heartbeat",
+        fileEvidence: "server/src/websocket.js",
+      },
+    ],
+  },
+  {
     technology: "AES-256-GCM Encryption",
     category: "Security",
     projects: [
@@ -148,6 +220,24 @@ export const evidenceMap = [
         name: "Rakshak",
         role: "Sandboxed Rust desktop wrapper for React 19 security console with strict Content Security Policy",
         fileEvidence: "gui/src-tauri/src/main.rs, gui/src-tauri/tauri.conf.json",
+      },
+    ],
+  },
+  {
+    technology: "Pytest & Automated Testing",
+    category: "Verification",
+    projects: [
+      {
+        id: "virtual-iot",
+        name: "Virtual IoT Security Laboratory",
+        role: "117 / 117 automated unit and integration tests passing covering auth, detection, and ledger integrity",
+        fileEvidence: "tests/test_detection_engine.py, tests/test_audit_service.py",
+      },
+      {
+        id: "rakshak",
+        name: "Rakshak",
+        role: "1,387 regression test suite verifying security spine stages, authority resolution, and token validation",
+        fileEvidence: "tests/test_spine.py, tests/test_capabilities.py",
       },
     ],
   },

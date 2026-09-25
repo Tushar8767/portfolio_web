@@ -57,8 +57,7 @@ export default function About() {
           title="Security-focused engineering with practical breadth"
           id="about-heading"
         >
-          Computer Engineering student at JSPM&apos;s RSCE, Pune — focused on cybersecurity, with
-          working exposure to software engineering, AI/ML, Linux, and networking.
+          Computer Engineering student at JSPM&apos;s RSCOE, Pune with a Minor Degree in Embedded Systems — focusing on software systems, cybersecurity, AI, and IoT engineering.
         </SectionHeading>
 
         <div className="grid gap-5 lg:grid-cols-3">

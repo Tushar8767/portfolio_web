@@ -10,8 +10,8 @@ export default function Projects({ activeFilter, onClearFilter }) {
 
   // Sort projects based on active perspective mode
   const sortedProjects = [...projects].sort((a, b) => {
-    const prioA = isCybersecurity ? a.priority.cybersecurity : a.priority.software;
-    const prioB = isCybersecurity ? b.priority.cybersecurity : b.priority.software;
+    const prioA = isCybersecurity ? (a.cybersecurityPriority ?? 99) : (a.softwarePriority ?? 99);
+    const prioB = isCybersecurity ? (b.cybersecurityPriority ?? 99) : (b.softwarePriority ?? 99);
     return prioA - prioB;
   });
 
@@ -43,7 +43,7 @@ export default function Projects({ activeFilter, onClearFilter }) {
 
           <div className="flex items-center gap-3 font-mono text-xs">
             <span className="text-control-textSubtle">
-              Priority: <strong className="text-control-text uppercase">{mode}</strong>
+              Priority Mode: <strong className={isCybersecurity ? "text-secgreen uppercase" : "text-cyanflux uppercase"}>{mode}</strong>
             </span>
             {activeFilter && (
               <button
@@ -61,7 +61,7 @@ export default function Projects({ activeFilter, onClearFilter }) {
         {/* Systems Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredProjects.map((project, index) => {
-            const isCaseStudyOnly = project.deploymentType === "case-study";
+            const highlights = isCybersecurity ? project.cybersecurityHighlights : project.softwareHighlights;
 
             return (
               <div
@@ -97,15 +97,40 @@ export default function Projects({ activeFilter, onClearFilter }) {
                     </p>
                   </div>
 
-                  {/* Architecture Pillars */}
-                  <div className="my-5 rounded-lg border border-control-border bg-control-bg p-3.5 space-y-2 font-mono text-xs">
+                  {/* 1-Line Problem Statement */}
+                  {project.problemStatement && (
+                    <div className="mt-3 rounded border border-control-border/60 bg-control-bg/60 p-2.5 font-sans text-xs text-control-textMuted">
+                      <strong className="text-control-text font-mono text-[0.7rem] uppercase tracking-wider block mb-0.5">Problem:</strong>
+                      {project.problemStatement}
+                    </div>
+                  )}
+
+                  {/* Mode-Specific Highlights */}
+                  {highlights && highlights.length > 0 && (
+                    <div className="mt-3.5 space-y-1">
+                      <span className="font-mono text-[0.65rem] text-control-textSubtle uppercase tracking-wider block">
+                        {isCybersecurity ? "Security & Defense Capabilities:" : "Architecture & Engineering Highlights:"}
+                      </span>
+                      <ul className="space-y-1 font-sans text-xs text-control-textMuted">
+                        {highlights.slice(0, 3).map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-1.5">
+                            <span className={isCybersecurity ? "text-secgreen font-mono shrink-0" : "text-cyanflux font-mono shrink-0"}>▸</span>
+                            <span className="leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Architecture Pillars / Metrics */}
+                  <div className="my-4 rounded-lg border border-control-border bg-control-bg p-3 space-y-2 font-mono text-xs">
                     <span className="text-[0.65rem] text-control-textSubtle uppercase tracking-wider block">
-                      Architectural Boundaries & Evidence:
+                      Architectural Evidence & Verification:
                     </span>
                     <div className="grid grid-cols-2 gap-2 text-[0.72rem]">
                       {project.metrics.slice(0, 4).map((m) => (
                         <div key={m.label} className="border-l border-control-border pl-2">
-                          <span className="block text-control-text font-bold text-cyanflux">{m.value}</span>
+                          <span className={`block font-bold ${isCybersecurity ? "text-secgreen" : "text-cyanflux"}`}>{m.value}</span>
                           <span className="block text-control-textSubtle text-[0.65rem] truncate">{m.label}</span>
                         </div>
                       ))}
@@ -132,7 +157,7 @@ export default function Projects({ activeFilter, onClearFilter }) {
                       href={`/projects/${project.slug}`}
                       className="inline-flex items-center gap-1.5 rounded-lg border border-cyanflux/40 bg-cyanflux/10 px-3.5 py-1.5 font-semibold text-cyanflux hover:bg-cyanflux/20 transition"
                     >
-                      <span>Explore System</span>
+                      <span>Case Study</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
 
@@ -154,14 +179,14 @@ export default function Projects({ activeFilter, onClearFilter }) {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-secgreen hover:underline"
+                      className="inline-flex items-center gap-1 text-secgreen hover:underline font-semibold"
                     >
                       <span>Live Demo</span>
                       <ExternalLink className="h-3 w-3" />
                     </a>
                   ) : (
                     <span className="text-[0.68rem] text-control-textSubtle">
-                      Offline-First Host Architecture
+                      Offline Desktop Control
                     </span>
                   )}
                 </div>

@@ -3,87 +3,34 @@
 
 export const projects = [
   {
-    id: "rakshak",
-    slug: "rakshak",
-    title: "Rakshak",
-    domain: "Cybersecurity · Local-First Control Plane",
-    domainShort: "Cybersecurity",
-    tagline: "Local-First Cybersecurity Control Plane & Operator Security Console",
-    summary:
-      "Rakshak is an offline-first, defense-in-depth cybersecurity control platform and operator security console. It enforces deterministic, policy-governed system control, real-time security observation, and cryptographic tamper-evident auditability with a non-bypassable 11-stage security spine.",
-    problem:
-      "Modern workstations and host environments lack granular, tamper-evident boundaries between operator interfaces, automated scripts, and system operations. Implicit trust models allow accidental or malicious privilege escalation without cryptographic accountability or human verification.",
-    why:
-      "Designed from first principles to ensure that no operation executes implicitly, AI is treated strictly as an untrusted advisory layer, mutating actions require two-step cryptographic confirmation, and historical event logs are linked via SHA-256 hash chains.",
-    
-    // Deployment & Status
-    status: "CASE STUDY",
-    statusBadge: "Desktop Release Certified",
-    deploymentType: "case-study",
-    liveUrl: null, // Local-first desktop/API platform; strictly no fake live demo
-    githubUrl: "https://github.com/Tushar8767/Rakshak",
-    
-    // Mode prioritization: 1 = primary priority
-    priority: {
-      software: 4,
-      cybersecurity: 1,
-    },
-
-    // Verified metrics
-    metrics: [
-      { label: "Regression Tests", value: "1,387", detail: "0 failed, 0 errors in pytest suite", linkTo: "#testing" },
-      { label: "Locked Capabilities", value: "35", detail: "26 Read-Only, 9 Mutating", linkTo: "#capabilities" },
-      { label: "Security Spine Stages", value: "11", detail: "Strict non-bypassable execution pipeline", linkTo: "#spine" },
-      { label: "Confirmation Token TTL", value: "30s", detail: "Cryptographic single-use challenge token", linkTo: "#confirmation" },
-    ],
-
-    // Architecture highlights
-    architecture: [
-      { stage: "01", name: "INPUT", detail: "Operator CLI, Tauri desktop GUI, or local API request" },
-      { stage: "02", name: "IDENTITY", detail: "Deterministic IdentityResolver with immutable models" },
-      { stage: "03", name: "AUTHORITY", detail: "4-tier hierarchy: UNTRUSTED < USER < TRUSTED < ADMIN < SYSTEM" },
-      { stage: "04", name: "INTENT", detail: "Structured command mapping with prompt-injection defense" },
-      { stage: "05", name: "POLICY", detail: "Fail-closed evaluation: DENY > REQUIRE_CONFIRMATION > ALLOW" },
-      { stage: "06", name: "CONFIRMATION", detail: "Mandatory single-use cryptographic token for mutating actions" },
-      { stage: "07", name: "EXECUTION", detail: "Policy-authorized dispatch gate; rejects direct bypass" },
-      { stage: "08", name: "DISPATCHER", detail: "Platform boundary enforcement using psutil & native APIs" },
-      { stage: "09", name: "HANDLER", detail: "Zero shell execution (no subprocess, no os.system, no eval)" },
-      { stage: "10", name: "OS OPERATION", detail: "Deterministic sandboxed interaction with Windows host" },
-      { stage: "11", name: "AUDIT", detail: "Append-only JSONL with SHA-256 hash chaining & break detection" },
-    ],
-
-    capabilityModel: {
-      total: 35,
-      mutating: [
-        { name: "file.write", category: "Storage", desc: "Write bounded, sandboxed file content" },
-        { name: "file.delete", category: "Storage", desc: "Safe file deletion behind operator confirmation" },
-        { name: "process.terminate", category: "Process", desc: "Terminate process by validated PID with self-protection" },
-        { name: "service.start", category: "Service", desc: "Start a registered local system service" },
-        { name: "service.stop", category: "Service", desc: "Stop a running system service" },
-        { name: "service.restart", category: "Service", desc: "Restart a system service" },
-        { name: "response.process.terminate", category: "Response", desc: "Incident response process termination" },
-        { name: "response.service.stop", category: "Response", desc: "Incident response service isolation" },
-        { name: "response.service.restart", category: "Response", desc: "Incident response service recovery" },
-      ],
-      readOnlyCount: 26,
-    },
-
-    techStack: ["Python 3.11+", "FastAPI", "Tauri v2", "React 19", "TypeScript", "psutil", "SHA-256", "Pytest"],
-    colorAccent: "secgreen",
-  },
-  {
     id: "ks-sentinel",
     slug: "ks-sentinel",
     title: "KS Sentinel 2.0",
     domain: "Software Systems · Secure Workspace OS",
     domainShort: "Software Systems",
     tagline: "Three-Tier Secure Workspace OS & Controlled Remote Capability Broker",
+    problemStatement:
+      "Allowing remote web environments to access host workstation resources risks arbitrary command execution, path traversal escapes, and uncontrolled process spawning.",
     summary:
       "KS Sentinel 2.0 is a web-based Virtual Operating Environment designed to provide secure, controlled remote access to authorized local-machine resources, system state, AI services, and cybersecurity capabilities across strict network and process boundaries.",
-    problem:
-      "Allowing remote web clients to access host developer workstations typically introduces catastrophic security risks, including arbitrary command execution, path traversal escapes, and uncontrolled process spawning.",
-    why:
-      "Engineered with a decoupled three-tier architecture: the browser executes a sandboxed React Web OS, communicating solely through a hardened Node.js/Express Secure Gateway, which brokers pre-authorized capabilities to a dedicated Windows Local Agent.",
+    
+    // Priorities based on perspective mode
+    softwarePriority: 1,
+    cybersecurityPriority: 3,
+
+    softwareHighlights: [
+      "Modular Virtual Desktop Web OS built with React 18, Vite, and component-level windowing state",
+      "Decoupled Node.js / Express Secure Gateway mediating API routes, JWT tokens, and rate limits",
+      "Real-time WebSocket telemetry channels streaming host resource metrics and agent heartbeats",
+      "Rigorous 28-module roadmap governance (Modules 0 through 27) with sequential modular locking",
+    ],
+
+    cybersecurityHighlights: [
+      "Strict three-tier network and process separation between browser client and local Windows host",
+      "Canonical absolute path validation preventing directory traversal escapes (../ or ..\\)",
+      "Capability-based local operations: pre-authorized action endpoints rather than arbitrary shell execution",
+      "Agent lifecycle monitoring with automatic session termination upon heartbeat interruption",
+    ],
 
     // Deployment & Status
     status: "LIVE",
@@ -93,21 +40,15 @@ export const projects = [
     activeInstanceUrl: "https://ks-sentinel-2-0.onrender.com/",
     githubUrl: "https://github.com/Tushar8767/KS_Sentinel_2.0",
 
-    // Mode prioritization
-    priority: {
-      software: 1,
-      cybersecurity: 3,
-    },
-
     // Verified metrics
     metrics: [
-      { label: "Architecture Model", value: "3-Tier", detail: "Web OS -> Gateway -> Windows Local Agent", linkTo: "#architecture" },
-      { label: "Roadmap Modules", value: "28 Modules", detail: "Locked 0-27 sequential module roadmap", linkTo: "#modules" },
-      { label: "Filesystem Boundary", value: "Confined", detail: "Canonical path validation; zero escapes", linkTo: "#security" },
-      { label: "Execution Model", value: "Capability Broker", detail: "Zero raw shell execution APIs", linkTo: "#broker" },
+      { label: "Architecture Model", value: "3-Tier", detail: "Web OS -> Gateway -> Windows Local Agent" },
+      { label: "Roadmap Modules", value: "28 Modules", detail: "Locked 0-27 sequential module roadmap" },
+      { label: "Filesystem Boundary", value: "Confined", detail: "Canonical path validation; zero escapes" },
+      { label: "Execution Model", value: "Capability Broker", detail: "Zero raw shell execution APIs" },
     ],
 
-    architecture: [
+    architectureTiers: [
       { stage: "Tier 1", name: "React 18 / Vite Web OS", detail: "Virtual desktop environment with modular window managers" },
       { stage: "Tier 2", name: "Node.js / Express Gateway", detail: "Session token validation, rate limiting, and route filtering" },
       { stage: "Tier 3", name: "Windows Local Agent", detail: "Sandboxed native execution on the host machine via IPC/WS" },
@@ -123,12 +64,28 @@ export const projects = [
     domain: "IoT Security · Embedded Systems · SOC",
     domainShort: "IoT Security",
     tagline: "Software-Defined IoT Security Testbed & SOC Dashboard with Proteus LPC2138 ARM7",
+    problemStatement:
+      "Cybersecurity testing on physical IoT hardware is expensive, difficult to automate at scale, and risks device destruction during aggressive attack simulations.",
     summary:
-      "A reproducible IoT cybersecurity testbed pairing a simulated ARM7 hardware microcontroller (Philips/NXP LPC2138) in Proteus ISIS with a virtual device fleet, an enterprise FastAPI security backend, an automated threat detection engine, an immutable SHA-256 audit ledger, and a React 19 SOC dashboard.",
-    problem:
-      "Cybersecurity testing on physical hardware is costly, difficult to scale, and carries risks of device destruction during aggressive attacks. Developers lack safe environments to test IoT attack scenarios, firmware UART bridging, and automated quarantine responses.",
-    why:
-      "Built to enable deterministic execution of 7 MITRE ATT&CK-aligned scenarios, bridging compiled ARM7 C firmware with cloud-deployable security backends and cryptographic audit ledgers without requiring physical hardware benches.",
+      "A reproducible IoT cybersecurity testbed pairing a simulated ARM7 hardware microcontroller (Philips/NXP LPC2138) in Proteus ISIS with a virtual device fleet, an enterprise FastAPI security backend, an automated threat detection engine, a tamper-evident SHA-256 hash-chained audit ledger, and a React 19 SOC dashboard.",
+    
+    // Priorities
+    softwarePriority: 2,
+    cybersecurityPriority: 2,
+
+    softwareHighlights: [
+      "Hardware-in-the-loop electronic simulation pairing Proteus LPC2138 with Python UART serial bridge",
+      "Asynchronous FastAPI defense core supporting high-throughput telemetry ingestion and WebSocket broadcasts",
+      "Virtual device fleet modeling 4 distinct devices with deterministic asynchronous lifecycle states",
+      "Full-stack React 19 SOC console with dynamic sensor gauges, radar motion circles, and triage queues",
+    ],
+
+    cybersecurityHighlights: [
+      "6 deterministic threat detection algorithms evaluating sensor boundaries, brute force, and impersonation",
+      "Automated Security Orchestration & Automated Response (SOAR) transitioning compromised devices to SUSPENDED",
+      "Tamper-evident SHA-256 hash-chained audit ledger with 1-click historical integrity verification",
+      "7 MITRE ATT&CK-aligned automated cyberattack simulations (Scenarios A through G)",
+    ],
 
     // Deployment & Status
     status: "LIVE",
@@ -137,18 +94,28 @@ export const projects = [
     liveUrl: "https://virtual-iot-security-laboratory.onrender.com/",
     githubUrl: "https://github.com/Tushar8767/Virtual-IoT-Security-Laboratory",
 
-    // Mode prioritization
-    priority: {
-      software: 2,
-      cybersecurity: 2,
-    },
-
     // Verified metrics
     metrics: [
-      { label: "Automated Tests", value: "117 / 117", detail: "100% pass rate in pytest suite", linkTo: "#testing" },
-      { label: "Simulated Attacks", value: "7 Scenarios", detail: "Scenarios A through G (MITRE ATT&CK)", linkTo: "#scenarios" },
-      { label: "Hardware Core", value: "LPC2138", detail: "ARM7TDMI 60 MHz with C firmware & ADC", linkTo: "#hardware" },
-      { label: "Audit Ledger", value: "SHA-256", detail: "Cryptographic hash-chained block verification", linkTo: "#ledger" },
+      { label: "Automated Tests", value: "117 / 117", detail: "100% pass rate in pytest suite" },
+      { label: "Attack Scenarios", value: "7 Scenarios", detail: "Scenarios A through G (MITRE ATT&CK)" },
+      { label: "Detection Rules", value: "6 Rules", detail: "Deterministic threshold & pattern engines" },
+      { label: "Hardware Core", value: "LPC2138", detail: "ARM7TDMI 60 MHz with C firmware & ADC" },
+    ],
+
+    virtualDevices: [
+      { id: "LPC2138-TEMP-001", name: "Proteus ARM7 Hardware Node", type: "Temperature (ADC + LM35)", protocol: "UART0 9600 Baud" },
+      { id: "PY-TEMP-001", name: "Virtual Ambient Temp Sensor", type: "Temperature (20°C–26°C)", protocol: "HTTP / MQTT" },
+      { id: "PY-MOTION-001", name: "Virtual PIR Motion Sensor", type: "Occupancy & Lux Telemetry", protocol: "HTTP / MQTT" },
+      { id: "PY-ACTUATOR-001", name: "Smart HVAC Actuator", type: "State & Power Consumption", protocol: "HTTP / MQTT" },
+    ],
+
+    detectionRules: [
+      { rule: "VALUE_OUT_OF_BOUNDS", desc: "Triggers when telemetry metrics exceed physical safety limits (Temp > 45°C or < 0°C)" },
+      { rule: "AUTH_BRUTE_FORCE", desc: "Sliding-window counter tracking failed HMAC authentications (>= 5 failures within 60s)" },
+      { rule: "RATE_LIMIT_EXCEEDED", desc: "Token-bucket rate limiter triggers if ingestion frequency exceeds 10 messages/sec" },
+      { rule: "DEVICE_INACTIVE", desc: "Deadman timeout triggers if heartbeat is absent > 2 * heartbeat_interval + 15s" },
+      { rule: "CAPABILITY_MISMATCH", desc: "Intercepts actuator control requests lacking RECEIVE_COMMANDS capability" },
+      { rule: "DEVICE_IMPERSONATION", desc: "Identifies HMAC signature mismatches where an unauthorized actor uses a valid device ID" },
     ],
 
     scenarios: [
@@ -171,12 +138,28 @@ export const projects = [
     domain: "AI Engineering · Multimodal Systems · Safety",
     domainShort: "AI Engineering",
     tagline: "Multimodal AI Self-Reflection Assistant with Layered Safety & Encryption",
+    problemStatement:
+      "Conversational self-reflection tools suffer from LLM hallucinations, lack emotional nuance from text alone, store personal logs unencrypted, and fail to intercept indirect crisis expressions safely.",
     summary:
       "A full-stack multimodal AI self-reflection platform combining natural language processing, facial emotion recognition, weighted emotion fusion (60% NLP / 40% FER), TF-IDF cosine similarity retrieval over curated canonical scripture verses, and authenticated AES-256-GCM encryption at rest.",
-    problem:
-      "Conversational reflection tools often suffer from LLM hallucinations, lack emotional nuance from textual input alone, store deeply personal reflections in unencrypted databases, and fail to intercept indirect expressions of crisis or despair safely.",
-    why:
-      "Constructed as a rigorous software and AI engineering project featuring an independent 5-layer crisis interception pipeline (intercepting crisis keywords in English, leetspeak, Hinglish, and Marathi), zero clinical medical claims, and empirical load benchmarks.",
+
+    // Priorities
+    softwarePriority: 3,
+    cybersecurityPriority: 4,
+
+    softwareHighlights: [
+      "Decoupled microservice architecture: React frontend, Node/Express server, and Python FastAPI ML service",
+      "Weighted multimodal emotion fusion combining text sentiment polarity with facial micro-expression landmarks",
+      "Lightweight TF-IDF and Cosine Similarity retrieval over 14 canonical verses with sub-15ms latency",
+      "Empirically benchmarked load capacity: 424 RPS on gateway health, 388 RPS on multimodal fusion at zero errors",
+    ],
+
+    cybersecurityHighlights: [
+      "Authenticated application-level encryption at rest: AES-256-GCM for journal reflections and chat history",
+      "5-layer crisis safety interception (<10ms) covering English, leetspeak, Hinglish, Marathi, and indirect despair",
+      "PBKDF2 password hashing with 120,000 iterations and per-user cryptographic salts against credential attacks",
+      "Strict transient camera privacy: frames transmitted transiently to RAM only and never persisted to disk",
+    ],
 
     // Deployment & Status
     status: "LIVE",
@@ -185,30 +168,86 @@ export const projects = [
     liveUrl: "https://vedai-7v9t.onrender.com/",
     githubUrl: "https://github.com/Tushar8767/VedAI",
 
-    // Mode prioritization
-    priority: {
-      software: 3,
-      cybersecurity: 4,
-    },
-
     // Verified metrics
     metrics: [
-      { label: "Crisis Safety Layers", value: "5 Layers", detail: "Intercepts English, leetspeak, Hinglish, Marathi", linkTo: "#safety" },
-      { label: "Curated Canonical Verses", value: "14 Verses", detail: "Ground truth corpus across 5 chapters", linkTo: "#retrieval" },
-      { label: "Data Encryption", value: "AES-256-GCM", detail: "Authenticated encryption at rest for chats & notes", linkTo: "#encryption" },
-      { label: "Gateway RPS", value: "424 RPS", detail: "Zero errors at 200 concurrency load test", linkTo: "#performance" },
-    ],
-
-    safetyLayers: [
-      { layer: "1", type: "Direct Crisis Keywords", desc: "Immediate interception of acute self-harm language" },
-      { layer: "2", type: "Adversarial & Leetspeak", desc: "Detects obfuscated variants (suecide, kll myslf, kms, unalive)" },
-      { layer: "3", type: "Multilingual Dialects", desc: "Hinglish ('ab jeena nahi') & Marathi ('mala jagaycha nahiye')" },
-      { layer: "4", type: "Indirect Despair Patterns", desc: "Burdensomeness signals ('want to disappear', 'burden to everyone')" },
-      { layer: "5", type: "Benign Idiom Filter", desc: "Prevents false positives on idioms ('killing it', 'dead tired')" },
+      { label: "Crisis Safety Layers", value: "5 Layers", detail: "Intercepts English, leetspeak, Hinglish, Marathi" },
+      { label: "Curated Canonical Verses", value: "14 Verses", detail: "Ground truth corpus across 5 chapters" },
+      { label: "Data Encryption", value: "AES-256-GCM", detail: "Authenticated encryption at rest for chats & notes" },
+      { label: "Gateway RPS", value: "424 RPS", detail: "Zero errors at 200 concurrency load test" },
     ],
 
     techStack: ["React.js", "Node.js", "Express.js", "Python", "FastAPI", "PostgreSQL", "AES-256-GCM", "TF-IDF"],
     colorAccent: "blueflux",
+  },
+  {
+    id: "rakshak",
+    slug: "rakshak",
+    title: "Rakshak",
+    domain: "Cybersecurity · Local-First Control Plane",
+    domainShort: "Cybersecurity",
+    tagline: "Local-First Cybersecurity Control Plane & Operator Security Console",
+    problemStatement:
+      "Host workstations lack non-bypassable boundaries between user interfaces, automated scripts, and system operations, allowing accidental or malicious privilege escalation without cryptographic accountability.",
+    summary:
+      "Rakshak is an offline-first, defense-in-depth cybersecurity control platform and operator security console. It enforces deterministic, policy-governed system control, real-time security observation, and tamper-evident SHA-256 hash-chained audit logging with a non-bypassable 11-stage security spine.",
+    
+    // Priorities
+    softwarePriority: 4,
+    cybersecurityPriority: 1,
+
+    softwareHighlights: [
+      "Offline-first system architecture with clean lifecycle states (CREATED, STARTING, RUNNING, STOPPING, STOPPED)",
+      "Strict loopback FastAPI backend (127.0.0.1:8765) with Pydantic v2 schemas and OpenAPI contracts",
+      "Desktop operator console built with Tauri v2 + React 19 + TypeScript with strict Content Security Policy",
+      "Independent CLI recovery system (python -m rakshak.main) functioning out-of-band without GUI dependencies",
+    ],
+
+    cybersecurityHighlights: [
+      "11-stage canonical security spine: no operation executes without identity, authority, policy, and confirmation",
+      "Locked inventory of exactly 35 registered capabilities: 26 read-only, 9 mutating requiring operator confirmation",
+      "Mandatory two-step cryptographic challenge: 30-second TTL confirmation token cryptographically bound to target",
+      "SHA-256 hash-chained audit logging: append-only JSONL with cryptographic break detection across 3,500+ events",
+    ],
+
+    // Deployment & Status
+    status: "CASE STUDY",
+    statusBadge: "Desktop Release Certified",
+    deploymentType: "case-study",
+    liveUrl: null, // Strictly offline-first desktop platform; no fake live demo
+    githubUrl: "https://github.com/Tushar8767/Rakshak",
+
+    // Verified metrics
+    metrics: [
+      { label: "Regression Tests", value: "1,387", detail: "0 failed, 0 errors in pytest suite" },
+      { label: "Locked Capabilities", value: "35 Caps", detail: "26 Read-Only, 9 Mutating" },
+      { label: "Security Spine Stages", value: "11 Stages", detail: "Strict non-bypassable execution pipeline" },
+      { label: "Confirmation Token TTL", value: "30s", detail: "Single-use cryptographic challenge token" },
+    ],
+
+    capabilityModel: {
+      mutating: [
+        { name: "file.write", category: "Filesystem", desc: "Write or update file within canonical boundaries" },
+        { name: "file.delete", category: "Filesystem", desc: "Secure deletion of file within authorized paths" },
+        { name: "process.kill", category: "Process", desc: "Bounded termination of target PID with self-protection" },
+        { name: "service.start", category: "Services", desc: "Start registered system or Windows background service" },
+        { name: "service.stop", category: "Services", desc: "Stop registered system or Windows background service" },
+        { name: "service.restart", category: "Services", desc: "Restart active background service process" },
+        { name: "network.interface.toggle", category: "Network", desc: "Enable or disable network adapter interface" },
+        { name: "security.firewall.block", category: "Security", desc: "Append defensive firewall block rule for malicious IP" },
+        { name: "audit.clear_test_records", category: "Audit", desc: "Maintenance token to purge ephemeral test records" },
+      ],
+      readonly: [
+        "system.info", "system.status", "file.list", "file.inspect", "file.read",
+        "process.list", "process.inspect", "service.list", "service.inspect",
+        "network.interfaces", "network.interface.inspect", "network.routes", "network.dns", "network.hostname",
+        "security.monitor.summary", "security.monitor.processes", "security.monitor.services", "security.monitor.startup",
+        "security.monitor.accounts", "security.risk.summary", "security.risk.assess", "audit.query", "audit.summary",
+        "audit.correlate", "audit.verify", "forensic.summary",
+      ],
+    },
+
+    techStack: ["Python 3.11+", "FastAPI", "Tauri v2", "React 19", "TypeScript", "psutil", "SHA-256", "Pytest"],
+    colorAccent: "secgreen",
   },
 ];
 

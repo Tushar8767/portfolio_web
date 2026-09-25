@@ -21,7 +21,7 @@ export default function Resume() {
                 DOWNLOAD RESUME
               </h2>
               <p className="font-sans text-sm text-control-textMuted leading-relaxed max-w-xl mb-6">
-                Tailored ATS-optimized resumes documenting Computer Engineering degree (CGPA 8.85 / 10), cybersecurity internship experience, four major software & security systems, and verified IIT NPTEL certifications.
+                Tailored ATS-optimized resumes documenting Computer Engineering degree with Minor in Embedded Systems (CGPA 8.65 / 10), cybersecurity internship experience, four major software & security systems, and verified IIT NPTEL certifications.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-3 font-mono text-xs text-control-textSubtle mb-6">

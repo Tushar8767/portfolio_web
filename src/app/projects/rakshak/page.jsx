@@ -299,7 +299,7 @@ export default function RakshakCaseStudy() {
 
           {capabilityTab === "mutating" ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs">
-              {project.capabilityModel.mutating.map((cap) => (
+              {(project.capabilityModel?.mutating || []).map((cap) => (
                 <div
                   key={cap.name}
                   className="rounded-lg border border-control-border bg-control-bg p-3.5 space-y-1 hover:border-amberwarn/40 transition"
